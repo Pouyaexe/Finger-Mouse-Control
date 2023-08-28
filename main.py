@@ -52,14 +52,14 @@ while cap.isOpened():
                 # Map normalized coordinates to screen dimensions
                 move_mouse(thumb_tip.x + dx, thumb_tip.y + dy)
             
-            # Registering a click if middle finger touches the index finger
-            if index_middle_distance < 0.05:
-                # Check if enough time has passed since the last click
-                current_time = time.time()
-                if current_time - last_click_time >= click_interval:
-                    # Click the left button
-                    print("Click")
-                    last_click_time = current_time
+                # Registering a click if middle finger touches the index finger
+                if index_middle_distance < 0.05:
+                    # Check if enough time has passed since the last click
+                    current_time = time.time()
+                    if current_time - last_click_time >= click_interval:
+                        # Click the left button
+                        print("Click")
+                        last_click_time = current_time
 
     cv2.imshow("Pinch Gesture Mouse Control", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
