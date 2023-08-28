@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 from mouse import move_mouse
+import time
 
 # Initialize Mediapipe Hands module
 mp_hands = mp.solutions.hands
@@ -13,6 +14,10 @@ cap.set(4, 480)
 
 # Set the cursor movement speed factor (adjust as needed)
 cursor_speed = 2.0
+
+# Click debounce settings
+click_interval = 1.0  # Minimum time between clicks (in seconds)
+last_click_time = time.time()
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -47,12 +52,14 @@ while cap.isOpened():
                 # Map normalized coordinates to screen dimensions
                 move_mouse(thumb_tip.x + dx, thumb_tip.y + dy)
             
-                # Registering a click if middle finger touches the index finger
-                if index_middle_distance < 0.05:
+            # Registering a click if middle finger touches the index finger
+            if index_middle_distance < 0.05:
+                # Check if enough time has passed since the last click
+                current_time = time.time()
+                if current_time - last_click_time >= click_interval:
                     # Click the left button
                     print("Click")
-
-            
+                    last_click_time = current_time
 
     cv2.imshow("Pinch Gesture Mouse Control", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
