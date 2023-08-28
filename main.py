@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from mouse import move_mouse
+from mouse import move_mouse, click_mouse
 import time
 
 # Initialize Mediapipe Hands module
@@ -58,8 +58,10 @@ while cap.isOpened():
                     current_time = time.time()
                     if current_time - last_click_time >= click_interval:
                         # Click the left button
+                        # click_mouse()
                         print("Click")
                         last_click_time = current_time
+                        
 
     cv2.imshow("Pinch Gesture Mouse Control", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
