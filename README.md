@@ -1,5 +1,5 @@
 
-```markdown
+
 # Hand Gesture Mouse Control
 
 This Python script uses the Mediapipe library to control the mouse cursor using hand gestures. The script detects pinch gesture between the thumb and index finger and moves the mouse cursor accordingly. Additionally, the script can register clicks by touching the middle finger to the index finger. A debouncing mechanism is implemented to prevent multiple clicks in a short period of time.
@@ -53,6 +53,3 @@ This project is inspired by the potential applications of hand gesture recogniti
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-```
